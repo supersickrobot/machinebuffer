@@ -4,11 +4,13 @@ from matplotlib import animation
 
 def run():
     #attendance vs autonomoy
-    mb1 = {'b0': {'size': 30, 'type': 'buffer', 'point': 'm1'},
-           'm1': {'batch': 1, 'rate': 1, 'type': 'machine', 'point': 'b1'},
+    mb1 = {'b0': {'size': 100, 'type': 'buffer', 'point': 'm1'},
+           'm1': {'batch': 10, 'rate': 1, 'type': 'machine', 'point': 'b1'},
            'b1': {'size': 10, 'type': 'buffer', 'point': 'm2'},
-           'm2': {'batch': 4, 'rate': 8, 'type': 'machine', 'point': 'b2'},
-           'b2': {'size': 100, 'type': 'buffer', 'point': 'end'}}
+           'm2': {'batch': 4, 'rate': 2, 'type': 'machine', 'point': 'b2'},
+           'b2': {'size': 100, 'type': 'buffer', 'point': 'm3'},
+           'm3': {'batch': 2, 'rate': 1, 'type': 'machine', 'point': 'b3'},
+           'b3': {'size': 100, 'type': 'buffer', 'point': 'end'}}
 
     maxtime = 100
     # print(len(mb1)
@@ -73,7 +75,7 @@ def run():
         for i, b in enumerate(barcollection):
             b.set_height(y[i])
 
-    anim = animation.FuncAnimation(fig, animate, repeat=True, blit=False, frames=maxtime, interval=1)
+    anim = animation.FuncAnimation(fig, animate, repeat=True, blit=False, frames=maxtime, interval=100)
 
     plt.show()
 
